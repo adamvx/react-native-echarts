@@ -10,8 +10,8 @@ export interface EChartProps {
   backgroundColor?: string;
 }
 
-const EChartss: React.FC<EChartProps> = (props) => {
-  const { onData, onLoadEnded, backgroundColor = 'rgba(0, 0, 0, 0)' } = props;
+const ECharts: React.FC<EChartProps> = (props) => {
+  const { onData, onLoadEnded } = props;
 
   const [callbacks, setCallbacks] = useState<{ [uuid: string]: any }>({});
   const webview = useRef<WebView>(null);
@@ -39,6 +39,7 @@ const EChartss: React.FC<EChartProps> = (props) => {
 
   const generateUUID = () => `_${Math.random().toString(36).substr(2, 9)}`;
 
+  // @ts-ignore
   const setBackgroundColor = (color: string) => {
     const data = {
       types: 'SET_BACKGROUND_COLOR',
@@ -47,6 +48,7 @@ const EChartss: React.FC<EChartProps> = (props) => {
     postMessage(data);
   };
 
+  // @ts-ignore
   const getOption = (callback: any, properties: any) => {
     const uuid = generateUUID();
     setCallbacks((val) => {
@@ -62,6 +64,7 @@ const EChartss: React.FC<EChartProps> = (props) => {
     postMessage(data);
   };
 
+  // @ts-ignore
   const setOption = (option: any, notMerge: boolean, lazyUpdate: boolean) => {
     const data = {
       types: 'SET_OPTION',
@@ -74,6 +77,7 @@ const EChartss: React.FC<EChartProps> = (props) => {
     postMessage(data);
   };
 
+  // @ts-ignore
   const clear = () => {
     const data = {
       types: 'CLEAR',
@@ -107,4 +111,4 @@ const EChartss: React.FC<EChartProps> = (props) => {
   );
 };
 
-export default EChartss;
+export default ECharts;
